@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   output: {
@@ -19,16 +20,49 @@ module.exports = {
         use: ['html-loader'],
       },
       {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[name]__[local]___[hasg:base64:5]',
+              },
+            },
+            'postcss-loader',
+          ],
+        }),
       },
       {
-        test: /\.css$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap&-minimize',
-        ],
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[name]__[local]___[hasg:base64:5]',
+              },
+            },
+            'sass-loader',
+          ],
+        }),
       },
+      // {
+      //   test: /\.scss$/,
+      //   loaders: ['style-loader', 'css-loader', 'sass-loader'],
+      // },
+      // {
+      //   test: /\.css$/,
+      //   loaders: [
+      //     'style',
+      //     'css?modules&importLoaders=1&localIdentName=[name]__[local]___
+      //      [hash:base64:5]&sourceMap&-minimize',
+      //   ],
+      // },
     ],
   },
   devServer: {
@@ -38,6 +72,10 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html',
+    }),
+    new ExtractTextPlugin({
+      filename: 'styles.css',
+      allChunks: true,
     }),
   ],
   resolve: {

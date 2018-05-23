@@ -6,10 +6,11 @@ import OrderPage from '../OrderPage';
 import ProfilePage from '../ProfilePage';
 import Gate from '../Gate';
 import Navigation from '../../components/Navigation/Navigation';
+import styles from '../../styles/main.scss';
 
 const App = ({ user }) => (
   <Router>
-    <div>
+    <main className={styles.main}>
       {user.isAuthenticated && (
         <div>
           <Navigation />
@@ -27,7 +28,7 @@ const App = ({ user }) => (
           <Redirect to="/gate" />
         </Switch>
       )}
-    </div>
+    </main>
   </Router>
 );
 
