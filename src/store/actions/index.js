@@ -13,3 +13,10 @@ export function removeOrder(orderId) {
     orderId,
   };
 }
+
+export function authenticate(email) {
+  return {
+    type: ActionTypes.AUTHENTICATE,
+    email,
+  };
+}
