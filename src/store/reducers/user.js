@@ -7,10 +7,18 @@ const initialState = {
   email: 'jd@yahoo.com',
 };
 
+const emptyState = {
+  isAuthenticated: false,
+  name: '',
+  email: '',
+};
+
 export default function user(state = initialState, action) {
   switch (action.type) {
     case ActionTypes.AUTHENTICATE:
-      return state;
+      return initialState;
+    case ActionTypes.UNAUTHENTICATE:
+      return emptyState;
     default:
       return state;
   }

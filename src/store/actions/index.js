@@ -14,9 +14,14 @@ export function removeOrder(orderId) {
   };
 }
 
-export function authenticate(email) {
+export function authenticate() {
   return {
     type: ActionTypes.AUTHENTICATE,
-    email,
+  };
+}
+
+export function unauthenticate() {
+  return {
+    type: ActionTypes.UNAUTHENTICATE,
   };
 }
