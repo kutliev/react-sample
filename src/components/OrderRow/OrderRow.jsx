@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Order from '../../store/models/Order';
 
+const displayPrice = price => (price / 100).toFixed(2);
+
 const OrderRow = ({ order, removeClick }) => (
   <div>
     ID: { order.id }<br />
     Title: { order.title }<br />
-    Price: { order.price }<br />
-    <button onClick={() => removeClick(order.id)}>Remove</button>
+    Price: { displayPrice(order.price) }<br />
+    <button onClick={() => { removeClick(); }}>
+      Remove
+    </button>
   </div>
 );
 

@@ -1,47 +1,66 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import OrderList from '../../components/OrderList';
-import Order from '../../store/models/Order';
 import AddOrderForm from '../AddOrderForm';
+import { addOrder, removeOrder } from '../../../../trial/src/store/actions';
 
 class OrderPage extends Component {
   constructor(props) {
     super(props);
-
-    const initState = [
-      new Order(1, 'One', 100),
-      new Order(2, 'Two', 200),
-      new Order(3, 'Three', 300),
-    ];
-
-    this.state = {
-      orders: initState,
-    };
-
     this.removeClick = this.removeClick.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
+  }
+
+  getNewOrderId() {
+    return Math.max(...this.props.orders.map(order => order.id)) + 1;
   }
 
   removeClick(id) {
     // eslint-disable-next-line
     console.log(`removeClick ID: ${id}`);
-    return this.state.orders.filter(order => order.id === id);
-  }
-
-  handleAdd(newOrder) {
-    // eslint-disable-next-line
-    console.log(newOrder);
-    return this.state.orders.length;
+    return this.props.orders.filter(order => order.id === id);
   }
 
   render() {
     return (
       <div>
         <h2>Order Page</h2>
-        <OrderList orders={this.state.orders} removeClick={this.removeClick} />
-        <AddOrderForm handleAdd={this.handleAdd} orderCount={this.state.orders.length} />
+        <OrderList orders={this.props.orders} removeClick={this.props.removeOrder} />
+        <AddOrderForm handleAdd={this.props.saveOrder} newOrderId={this.getNewOrderId()} />
       </div>
     );
   }
 }
 
-export default OrderPage;
+OrderPage.propTypes = {
+  orders: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  })).isRequired,
+  saveOrder: PropTypes.func.isRequired,
+  removeOrder: PropTypes.func.isRequired,
+};
+
+function getOrders(state) {
+  if (!state.orders) {
+    return [];
+  }
+
+  return state.orders;
+}
+
+const mapStateToProps = state => ({
+  orders: getOrders(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  saveOrder: (newOrder) => {
+    dispatch(addOrder(newOrder));
+  },
+  removeOrder: (orderId) => {
+    dispatch(removeOrder(orderId));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);

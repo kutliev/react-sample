@@ -33,15 +33,20 @@ class AddOrderForm extends Component {
   }
 
   handleSave() {
-    const newId = this.props.orderCount + 1;
+    const newId = this.props.newOrderId;
     const newOrder = new Order(newId, this.state.title, this.state.price);
     this.props.handleAdd(newOrder);
+    this.setState({
+      title: '',
+      price: 0,
+    });
   }
 
   render() {
     return (
       <div>
         <h2>New order</h2>
+        ID: { this.props.newOrderId}<br />
         Title: <input value={this.state.title} onChange={this.handleTitleChange} /><br />
         Price: <input value={this.state.price} onChange={this.handlePriceChange} /><br />
         <button onClick={this.handleSave}>Save</button>
@@ -51,7 +56,7 @@ class AddOrderForm extends Component {
 }
 
 AddOrderForm.propTypes = {
-  orderCount: PropTypes.number.isRequired,
+  newOrderId: PropTypes.number.isRequired,
   handleAdd: PropTypes.func.isRequired,
 };
 

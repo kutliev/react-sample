@@ -6,7 +6,7 @@ const OrderList = ({ orders = [], removeClick }) => (
   <div>
     { orders.length === 0 ? <div>No orders found</div> : '' }
     { orders.map(order =>
-      <OrderRow key={order.id} order={order} removeClick={() => removeClick} />) }
+      <OrderRow key={order.id} order={order} removeClick={() => removeClick(order.id)} />) }
   </div>
 );
 
