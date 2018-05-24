@@ -35,7 +35,16 @@ class AddOrderForm extends Component {
 
   handleSave() {
     const newId = this.props.newOrderId;
-    const newOrder = new Order(newId, this.state.title, this.state.price);
+    const newPrice = this.state.price;
+    if (Number.isNaN(newPrice) || newPrice <= 0) {
+      return;
+    }
+    let newTitle = this.state.title;
+    if (newTitle.replace(/ /g, '').length === 0) {
+      newTitle = 'No title';
+    }
+
+    const newOrder = new Order(newId, newTitle, this.state.price);
     this.props.handleAdd(newOrder);
     this.setState({
       title: '',
