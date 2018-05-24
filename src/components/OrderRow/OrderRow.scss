@@ -1,0 +1,57 @@
+@import '../../styles/main';
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 20px;
+
+  span {
+    color: $dark-gray;
+    
+    &:after {
+      content: ':';
+    }
+  }
+
+  @media #{$is-mobile} {
+    display: block;
+
+    span {
+      display: inline-block;
+      width: 50px;
+
+      &:after {
+        content: '';
+      }
+    }
+  }
+
+  &:hover {
+    background: $light-gray;
+  }
+
+  .order_id {
+    width: 15%;
+    @media #{$is-mobile} {
+      width: 100%;
+    }
+  }
+  .order_title {
+    width: 40%;
+    @media #{$is-mobile} {
+      width: 100%;
+    }
+  }
+  .order_price {
+    width: 30%;
+    @media #{$is-mobile} {
+      width: 100%;
+    }
+  }
+
+  .remove_button {
+    cursor: pointer;
+    font-size: 0.7em;
+    background: $red;
+  }
+}

@@ -1,0 +1,30 @@
+@import '../../styles/main';
+
+.order_form {
+  width: auto;
+  display: inline-block;
+  padding: 0 20px 20px;
+  background: $light-gray;
+  border: 1px $main-gray solid;
+  border-radius: 3px;
+  vertical-align: top;
+
+  @media #{$is-mobile} {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  span {
+    display: inline-block;
+    width: 50px;
+  }
+  
+  .add_row {
+    margin-bottom: 10px;
+  }
+
+  .save_button {
+    width: 100px;
+    margin-top: 10px;
+  }
+}

@@ -2,12 +2,22 @@
 
 $main-bg-color:          white;
 $main-font:              'Open Sans', serif, arial;
+
 $main-font-color:        #333333;
 $button-bg-color:        #219653;
 $button-color:           white;
 $link-selected-bg-color: #2D9CDB;
 $main-gray:              #CCCCCC;
+$dark-gray:              #777777;
+$light-gray:             #EBEBEB;
+$red:                    #CC0000;
+
 $desktop-width:          960px;
+$tablet-width:           768px;
+$mobile-width:           475px;
+$before-desktop:         (max-width: 959px);
+$before-tablet:          (max-width: 767px);
+$is-mobile:              (max-width: 475px);
 
 body {
   margin: 0;
@@ -19,23 +29,36 @@ body {
 .main {
   width: $desktop-width;
   margin: 0 auto;
+
+  @media #{$before-desktop} {
+    width: 100%;
+  }
 }
 
 input[type='text'] {
-  font-size: 14px;
+  font-size: 16px;
   padding: 5px;
   border-radius: 3px;
   border: 1px $main-gray solid;
 }
 
 button {
-  font-size: 14px;
+  font-size: 1em;
   padding: 6px 10px;
   border-radius: 3px;
   background: $button-bg-color;
+  border: 1px transparent solid;
   color: $button-color;
+}
+
+h2, h3 {
+  font-weight: 700;
 }
 
 .hidden {
   display: none;
+}
+
+.centered {
+  text-align: center;
 }

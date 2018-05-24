@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Order from '../../store/models/Order';
+import styles from './AddOrderForm.scss';
 
 class AddOrderForm extends Component {
   constructor(props) {
@@ -44,12 +45,20 @@ class AddOrderForm extends Component {
 
   render() {
     return (
-      <div>
-        <h2>New order</h2>
-        ID: { this.props.newOrderId}<br />
-        Title: <input value={this.state.title} onChange={this.handleTitleChange} /><br />
-        Price: <input value={this.state.price} onChange={this.handlePriceChange} /><br />
-        <button onClick={this.handleSave}>Save</button>
+      <div className={styles.order_form}>
+        <h2>Add order</h2>
+        <div className={styles.add_row}>
+          <span>ID</span> { this.props.newOrderId}
+        </div>
+        <div className={styles.add_row}>
+          <span>Title</span> <input type="text" value={this.state.title} onChange={this.handleTitleChange} />
+        </div>
+        <div className={styles.add_row}>
+          <span>Price</span> <input type="text" value={this.state.price} onChange={this.handlePriceChange} />
+        </div>
+        <div className={styles.centered}>
+          <button className={styles.save_button} onClick={this.handleSave}>Save</button>
+        </div>
       </div>
     );
   }

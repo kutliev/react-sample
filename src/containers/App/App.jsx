@@ -15,7 +15,6 @@ const App = ({ user }) => (
         <div>
           <Navigation />
           <h1>React sample</h1>
-          isAuthenticated: { user.isAuthenticated ? 'Yes' : 'No' }<br />
           <Route exact path="/" component={OrderPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/gate" component={Gate} />

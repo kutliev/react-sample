@@ -1,0 +1,24 @@
+@import '../../styles/main';
+
+.navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    a, a:visited {
+      display: inline-block;
+      padding: 10px;
+      text-decoration: none;
+
+      &.active {
+        background: $link-selected-bg-color;
+        color: white;
+      }
+    }
+  }
+}

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styles from './Navigation.scss';
 
 const Navigation = () => (
-  <ul>
-    <li><Link to="/">Orders</Link></li>
-    <li><Link to="/profile">Profile</Link></li>
-    <li><Link to="/gate">Gate</Link></li>
+  <ul className={styles.navigation}>
+    <li><NavLink exact to="/" activeClassName={styles.active}>Orders</NavLink></li>
+    <li><NavLink to="/profile" activeClassName={styles.active}>Profile</NavLink></li>
+    <li><NavLink to="/gate" activeClassName={styles.active}>Gate</NavLink></li>
   </ul>
 );
 

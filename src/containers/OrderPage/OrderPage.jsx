@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import OrderList from '../../components/OrderList';
 import AddOrderForm from '../AddOrderForm';
 import { addOrder, removeOrder } from '../../../../trial/src/store/actions';
+import styles from './OrderPage.scss';
 
 class OrderPage extends Component {
   constructor(props) {
@@ -16,8 +17,6 @@ class OrderPage extends Component {
   }
 
   removeClick(id) {
-    // eslint-disable-next-line
-    console.log(`removeClick ID: ${id}`);
     return this.props.orders.filter(order => order.id === id);
   }
 
@@ -25,8 +24,16 @@ class OrderPage extends Component {
     return (
       <div>
         <h2>Order Page</h2>
-        <OrderList orders={this.props.orders} removeClick={this.props.removeOrder} />
-        <AddOrderForm handleAdd={this.props.saveOrder} newOrderId={this.getNewOrderId()} />
+        <div className={styles.wrapper}>
+          <OrderList
+            orders={this.props.orders}
+            removeClick={this.props.removeOrder}
+          />
+          <AddOrderForm
+            handleAdd={this.props.saveOrder}
+            newOrderId={this.getNewOrderId()}
+          />
+        </div>
       </div>
     );
   }

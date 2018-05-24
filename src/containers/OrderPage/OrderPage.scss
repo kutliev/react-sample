@@ -1,0 +1,11 @@
+@import '../../styles/main';
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  
+  @media #{$before-tablet} {
+    display: block;
+  }
+}
